@@ -2,12 +2,17 @@ import React from "react";
 import PostListItem from "../PostListItem/PostListItem";
 import "./PostList.css";
 
-const PostList = ({ posts, DeleteHandler }) => {
+const PostList = ({ posts, DeleteHandler, toggleImportant, toggleLike }) => {
   const items = posts.map((item) => {
     const { id, ...itemProps } = item;
     return (
       <li key={id} className="list-group-item">
-        <PostListItem onDelete={() => DeleteHandler(id)} {...itemProps} />
+        <PostListItem
+          {...itemProps}
+          onDelete={() => DeleteHandler(id)}
+          onImportant={() => toggleImportant(id)}
+          onLike={() => toggleLike(id)}
+        />
       </li>
     );
   });
